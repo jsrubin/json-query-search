@@ -2,23 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Search from './common/SearchBar';
 import Results from './common/ResultsArea';
 import HelpInfo from './common/HelpArea';
-import { conf } from './config';
+import UrlBar from './common/UrlBar';
 import './App.css';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [url, setUrl] = useState('https://jsonplaceholder.typicode.com/posts');
+  const [data, setData] = useState({
+    timestamp: new Date().getTime(),
+    data: []
+  });
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    fetch(conf.serverUrl)
+    fetch(url)
       .then(response => response.json())
       .then(data => {
-        if (data && data.search) {
-          console.log(data.search);
-          setData(data.search);
+        if (data && Array.isArray(data)) {
+          console.log(data);
+          setData({ timestamp: new Date().getTime(), data });
         }
       });
-  }, []);
+  }, [url]);
 
   return (
     <div className="App">
@@ -31,8 +35,13 @@ function App() {
           }}
         >
           search
-          <HelpInfo />
-          <Search data={data} setResults={setResults} />
+          <UrlBar setUrl={setUrl} defaultUrl={url} />
+          <HelpInfo data={data.data} />
+          <Search
+            data={data.data}
+            dataTimestamp={data.timestamp}
+            setResults={setResults}
+          />
           <Results results={results} />
         </div>
       </header>

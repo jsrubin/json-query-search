@@ -19,16 +19,16 @@ app.use(cors());
 
 app.get('/fn/info', (req, resp) =>
   resp.send({
-    status: 'ok'
+    name,
+    version,
+    repo: repository.url,
+    description
   })
 );
 
 app.get('/', (req, resp) =>
   resp.send({
-    name,
-    version,
-    repo: repository.url,
-    description
+    status: 'ok'
   })
 );
 

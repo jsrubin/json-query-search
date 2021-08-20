@@ -4,11 +4,15 @@
   "description": "Search and query your JSON data using simple query syntax.",
   "main": "index.js",
   "scripts": {
+    "client-install": "cd client && npm install && cd ..",
+    "preinstall": "npm run client-install",
     "start": "concurrently \"nodemon server/index.js\" \"npm run client\"",
     "client": "npm start --prefix client",
     "develop": "concurrently \"nodemon server/index.js\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "clean": "rm -rf node_modules && rm -rf client/node_modules",
+    "build": "npm run clean && npm install"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,7 @@
   "author": "Justin Rubin (justin.rubin@gmail.com)",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
@@ -31,6 +36,6 @@
     "eslint": "^7.26.0"
   },
   "engines": {
-    "node": ">=12.22.5 <15"
+    "node": ">=12.0.0 <15"
   }
 }

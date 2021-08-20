@@ -1,7 +1,18 @@
 import React from 'react';
 import { conf } from '../config';
 
-const HelpInfo = () => {
+const HelpInfo = props => {
+  const { data } = props;
+  const singleData = Array.isArray(data) && data.length > 0 ? data[0] : {};
+  const stringProp = Object.keys(singleData).find(
+    key => typeof singleData[key] === 'string'
+  );
+  const intProp = Object.keys(singleData).find(
+    key => typeof singleData[key] === 'number'
+  );
+  const exampleText = conf.exampleQueries
+    .replace(/\[prop1\]/g, stringProp)
+    .replace(/\[prop2\]/g, intProp);
   return (
     <div
       style={{
@@ -12,12 +23,13 @@ const HelpInfo = () => {
       }}
     >
       <textarea
-        defaultValue={conf.exampleQueries}
+        value={exampleText}
+        onChange={() => exampleText}
         style={{
-          width: '755px',
+          width: '50vw',
           height: '160px',
           fontSize: '.8rem',
-          borderRadius: '8px',
+          borderRadius: '0 0 8px 8px',
           color: '#000',
           backgroundColor: 'lightgrey',
           padding: '8px'

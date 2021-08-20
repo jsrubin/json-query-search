@@ -2,7 +2,7 @@ import React from 'react';
 import ReactJson from 'react-json-view';
 
 const Results = ({ results }) => {
-  if (!results || results.length === 0) {
+  if (!results || !Array.isArray(results)) {
     return <div></div>;
   }
 
@@ -15,7 +15,7 @@ const Results = ({ results }) => {
         fontSize: '.8rem',
         textAlign: 'left',
         padding: '8px',
-        margin: '30px',
+        margin: '8px 30px',
         maxHeight: '80vh',
         overflow: 'auto'
       }}

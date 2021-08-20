@@ -1,13 +1,11 @@
 export const conf = {
-  serverUrl: 'http://localhost:3001/search',
-  exampleQueries: `
-*                                                - all data
-title id                                         - all data with only title, id properties
-id                                               - collection of only id values
-title=%AA%                                       - partial match on AA
-title=%A.{0,1}A%                                 - partial match on AA or A/A in title
-title=%A.{0,1}A% userId=1                        - partial match title and userId
-title=%A.{0,1}A% userId=1 title id
-setupDay=1 userId=1 createdDate>1-MAY-21
+  exampleQueries: `[filters] [properties] [function]
+
+[prop1] [prop2]                                  - all data with only [prop1], [prop2] properties
+[prop1]=%et%                                    - partial match [prop1] on AA
+[prop1]=%s.{1,2}t% [prop2]<5                     - partial match [prop1] and [prop2]
+[prop1]=%s.{1,2}t% [prop2]=1 [prop1]
+avg([prop2])
+[prop1]=%s.{1,2}t% [prop1] [prop2] groupBy([prop2])
 `
 };

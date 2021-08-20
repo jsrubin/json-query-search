@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Icon from './SearchIcon';
-import { onSearch } from '../helper';
+import React, { useState } from 'react';
 
-const onClickSearch = async ({ data, query, setResults }) => {
-  const results = await onSearch({ data, query });
-  setResults(results);
+const isUrl = string => {
+  try {
+    return Boolean(new URL(string));
+  } catch (e) {
+    return false;
+  }
 };
 
-const Search = ({ data, setResults, dataTimestamp }) => {
-  const [query, onChange] = useState('');
+const UrlBar = ({ setUrl, defaultUrl }) => {
+  const [url, onChange] = useState(defaultUrl);
 
   const onType = e => {
     onChange(e.target.value);
@@ -19,18 +20,11 @@ const Search = ({ data, setResults, dataTimestamp }) => {
     if (e.charCode === 13) {
       e.preventDefault(); // Enter default will reload page
       e.stopPropagation();
-      onClickSearch({ data, query, setResults });
+      if (isUrl(url)) {
+        setUrl(url);
+      }
     }
   };
-
-  useEffect(
-    () => {
-      if (data && Array.isArray(data) && data.length > 0) {
-        onClickSearch({ data, query, setResults });
-      }
-    }, // eslint-disable-next-line
-    [dataTimestamp]
-  );
 
   return (
     <form>
@@ -38,43 +32,47 @@ const Search = ({ data, setResults, dataTimestamp }) => {
         <input
           type="text"
           name="name"
-          placeholder="filter query"
-          value={query}
+          placeholder="URL"
+          value={url}
           onChange={onType}
           onKeyPress={handleKeypress}
           autoComplete="off"
           style={{
-            width: '48.5vw',
+            width: '50.5vw',
             height: '40px',
-            borderRadius: '8px 0 0 8px',
+            borderRadius: '8px 8px 0 0',
             border: 'none',
             paddingLeft: '8px',
-            marginTop: '2px'
+            backgroundColor: 'grey',
+            fontColor: '#fff',
+            fontSize: '1.1rem',
+            margin: '2px'
           }}
         />
-        <div
+        {/* <div
           style={{
-            height: '42px',
+            height: '32px',
             width: '32px',
             borderRadius: '0 8px 8px 0',
             color: '#fff',
             backgroundColor: '#00cc00',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
-            marginTop: '2px'
+            alignItems: 'center'
           }}
           onClick={e => {
             e.preventDefault(); // Enter default will reload page
             e.stopPropagation();
-            onClickSearch({ data, query, setResults });
+            if (isUrl(url)) {
+              setUrl(url);
+            }
           }}
         >
-          <Icon />
-        </div>
+          LOAD
+        </div> */}
       </div>
     </form>
   );
 };
 
-export default Search;
+export default UrlBar;
