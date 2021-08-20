@@ -2,13 +2,8 @@
     "name": "json-query-search",
     "version": "1.0.0",
     "description": "Search and query your JSON data using simple query syntax.",
-    "main": "index.js",
+    "main": "client/src/index.js",
     "scripts": {
-        "client-install": "cd client && npm install && cd ..",
-        "preinstall": "cd client",
-        "start": "cd client && npm start --prefix client",
-        "client": "npm start --prefix client",
-        "develop": "cd client && npm start --prefix client",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "eslint ."
     },
