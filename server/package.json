@@ -1,0 +1,41 @@
+{
+  "name": "json-query-search",
+  "version": "1.0.0",
+  "description": "Search and query your JSON data using simple query syntax.",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "cd client && npm install && cd ..",
+    "preinstall": "npm run client-install",
+    "start": "concurrently \"nodemon server/index.js\" \"npm run client\"",
+    "client": "npm start --prefix client",
+    "develop": "concurrently \"nodemon server/index.js\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "clean": "rm -rf node_modules && rm -rf client/node_modules",
+    "build": "npm run clean && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jsrubin/json-query-search.git"
+  },
+  "author": "Justin Rubin (justin.rubin@gmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.2.1",
+    "cors": "^2.8.5",
+    "dateformat": "^4.5.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "hex-to-uuid": "^1.1.1",
+    "nodemon": "^2.0.12",
+    "react-json-view": "^1.21.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0"
+  },
+  "engines": {
+    "node": ">=12.0.0 <15"
+  }
+}
