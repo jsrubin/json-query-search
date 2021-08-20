@@ -166,7 +166,7 @@ const onSearch = ({ data, query }) => {
     });
   }
 
-  queryExpressions.forEach((expression, i) => {
+  queryExpressions.forEach(expression => {
     let elems = expression.split(/(?=[=<>!]|<=|>=)|(?<=[=<>!])/g);
     // split by operator
     const operatorMatch = operators.find(opr => expression.includes(opr));
