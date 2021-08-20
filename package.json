@@ -10,9 +10,7 @@
         "client": "npm start --prefix client",
         "develop": "cd client && npm start --prefix client",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "lint": "eslint .",
-        "clean": "rm -rf node_modules && rm -rf client/node_modules",
-        "build": "npm run clean && npm install"
+        "lint": "eslint ."
     },
     "repository": {
         "type": "git",
@@ -20,9 +18,7 @@
     },
     "author": "Justin Rubin (justin.rubin@gmail.com)",
     "license": "ISC",
-    "dependencies": {
-        "react-json-view": "^1.21.3"
-    },
+    "dependencies": {},
     "devDependencies": {
         "eslint": "^7.26.0"
     },
