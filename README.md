@@ -6,4 +6,4 @@ Search and query your JSON data using simple query syntax.
 
 - yarn start
 
-![Image](json-query-search.png)
+![Image](jqt.png)
